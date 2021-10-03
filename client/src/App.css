@@ -1,3 +1,8 @@
+body {
+    margin-top: 3rem !important;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
 .bt {
     width: 30px !important;
     height: 30px !important;
@@ -9,5 +14,33 @@
 }
 
 .section {
-    /* background-color: antiquewhite; */
+    position: relative;
+    border-radius: 10px;
+    min-height: 30px;
+    line-height: 30px;
+}
+
+.bt {
+    position: absolute;
+    right: 0;
+    top: 0;
+    /* margin-top: 6px;
+    margin-right: 10px; */
+}
+
+h1 {
+    text-align: center;
+    padding: 2rem;
+}
+
+.submit {
+    max-width: 100px;
+    max-height: 45px;
+    /* position: absolute;
+    right: 1rem;
+    bottom: 0; */
+}
+
+form {
+    align-items: end;
 }

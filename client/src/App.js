@@ -37,37 +37,50 @@ function App() {
   return (
     <div className="App container">
       <h1> Todos List </h1>
-      <form>
-        <div className="form-group">
-          <label htmlFor="titre"> Titre </label>
-          <input
-            type="text"
-            className="form-control"
-            id="titre"
-            name="titre"
-            onChange={(e) => {
-              setTitre(e.target.value);
-            }}
-          />
-          <label htmlFor="todo"> Todo </label>
-          <input
-            type="text"
-            className="form-control"
-            id="todo"
-            name="todo"
-            onChange={(e) => {
-              setTodo(e.target.value);
-            }}
-          />
-          <button className="btn btn-primary" onClick={submitTodo}>
-            Ajouter
-          </button>
+      <form className="row m-2">
+        <div className="col mx-auto d-inline-flex">
+          <div className="form-group  m-2">
+            <label htmlFor="titre" className="p-2">
+              {" "}
+              Titre{" "}
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="titre"
+              name="titre"
+              onChange={(e) => {
+                setTitre(e.target.value);
+              }}
+            />
+          </div>
+          <div className="form-group  m-2">
+            <label htmlFor="todo" className="p-2">
+              {" "}
+              Todo{" "}
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="todo"
+              name="todo"
+              onChange={(e) => {
+                setTodo(e.target.value);
+              }}
+            />
+          </div>
         </div>
+        <button
+          className="m-2 btn btn-primary submit col-3"
+          onClick={submitTodo}
+        >
+          Ajouter
+        </button>
       </form>
       {todoList.map((val) => {
         return (
           <div
-            className="section m-2 "
+            className="section m-2 p-3 "
             key={val.id}
             style={{
               background: val.color,
@@ -75,7 +88,7 @@ function App() {
           >
             <div className="row mx-auto">
               <div className="col mx-auto df">
-                <p>
+                <p className="mx-auto m-0">
                   <span>
                     <strong>
                       {val.titre} {": "}
@@ -86,15 +99,12 @@ function App() {
               </div>
               <div
                 type="button"
-                className=" text-center btn btn-danger bt col-1"
+                className="text-center btn btn-danger bt col-1"
                 onClick={() => {
                   deleteTodo(val.id);
                 }}
               >
-                <i
-                  className="mx-auto  fa fa-window-close"
-                  aria-hidden="true"
-                ></i>
+                <i className="mx-auto  fa fa-trash" aria-hidden="true"></i>
               </div>
             </div>
             {}
