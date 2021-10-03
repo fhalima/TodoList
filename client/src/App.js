@@ -7,10 +7,14 @@ function App() {
   const [todo, setTodo] = useState("");
   const [todoList, setTodoList] = useState([]);
   useEffect(() => {
+    getTodoList();
+  }, []);
+
+  const getTodoList = () => {
     Axios.get("http://localhost:3001/api/get").then((response) => {
       setTodoList(response.data);
     });
-  }, []);
+  };
 
   const submitTodo = (e) => {
     e.preventDefault();
@@ -18,26 +22,17 @@ function App() {
     Axios.post("http://localhost:3001/api/insert", {
       titre: titre,
       todo: todo,
-    }).then(() =>
-      setTodoList([
-        ...todoList,
-        {
-          titre: titre,
-          todo: todo,
-          color: colorRandom,
-        },
-      ])
-    );
+      color: colorRandom,
+    }).then(getTodoList());
     console.log(todoList);
   };
 
-  const deleteTodo = (titre) => {
-    Axios.delete(`http://localhost:3001/api/delete/${titre}`).then(
-      deleteElm(titre)
-    );
+  const deleteTodo = (id) => {
+    console.log(id);
+    Axios.delete(`http://localhost:3001/api/delete/${id}`).then(deleteElm(id));
   };
-  const deleteElm = (titre) => {
-    setTodoList(todoList.filter((todoelm) => todoelm.titre !== titre));
+  const deleteElm = (id) => {
+    setTodoList(todoList.filter((todoelm) => todoelm.id !== id));
   };
   return (
     <div className="App container">
@@ -73,11 +68,12 @@ function App() {
         return (
           <div
             className="section m-2 "
+            key={val.id}
             style={{
               background: val.color,
             }}
           >
-            <div className="row mx-auto" key={val.titre}>
+            <div className="row mx-auto">
               <div className="col mx-auto df">
                 <p>
                   <span>
@@ -92,7 +88,7 @@ function App() {
                 type="button"
                 className=" text-center btn btn-danger bt col-1"
                 onClick={() => {
-                  deleteTodo(val.titre);
+                  deleteTodo(val.id);
                 }}
               >
                 <i

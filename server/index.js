@@ -29,11 +29,12 @@ app.get("/api/get", (req, response) => {
     response.send(datajson);
 });
 
-app.delete("/api/delete/:titre", (req, res) => {
-    let key = req.params.titre;
-
+app.delete("/api/delete/:id", (req, res) => {
+    let key = req.params.id;
+    console.log("voici le id: " + key);
     for (var i = datajson.length - 1; i >= 0; i--) {
-        if (datajson[i].titre === key) {
+        if (datajson[i].id === Number(key)) {
+            console.log("c bon");
             datajson.splice(i, 1);
         }
     }
