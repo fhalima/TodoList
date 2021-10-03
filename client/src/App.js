@@ -101,8 +101,7 @@ function App() {
                 ></i>
               </div>
             </div>
-            {/* <input type="text" />
-            <button> Update </button> */}
+            {}
           </div>
         );
       })}
