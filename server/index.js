@@ -1,22 +1,25 @@
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
-let jsonData = require("./data.json");
+// let jsonData = require("./data.json");
 
 const app = express();
-let datajson;
+let datajson = [];
 
 const getDataJson = () => {
-    fs.readFile("./data.json", (err, data) => {
+    fs.readFile("./data.json", "utf8", (err, data) => {
         if (err) {
+            datajson = [];
             throw err;
-            datajson = [""];
         } else datajson = JSON.parse(data);
+
+        // datajson = data;
     });
 };
+
 const setDataJson = () => {
     let jd = JSON.stringify(datajson);
-
+    console.log(jd);
     fs.writeFile("data.json", jd, () => {});
 };
 
