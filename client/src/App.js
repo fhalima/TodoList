@@ -10,8 +10,16 @@ function App() {
     getTodoList();
   }, []);
 
+  const contrast = (color) => {
+    console.log(color);
+    let c = color.substr(1);
+    console.log(c);
+    return "#" + (0xffffff - parseInt(c, 16)).toString(16);
+  };
+
   const getTodoList = () => {
     Axios.get("http://localhost:3001/api/get").then((response) => {
+      console.log("reponse" + response.data);
       setTodoList(response.data);
     });
   };
@@ -78,13 +86,16 @@ function App() {
         </button>
       </form>
       {todoList.map((val) => {
+        let c = contrast(val.color);
+
         return (
           <div
             className="section m-2 p-3 "
             key={val.id}
-            // style={{
-            //   background: val.color,
-            // }}
+            style={{
+              background: val.color,
+              color: c,
+            }}
           >
             <div className="row mx-auto">
               <div className="col mx-auto df">
