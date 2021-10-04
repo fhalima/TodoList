@@ -37,8 +37,8 @@ function App() {
   return (
     <div className="App container">
       <h1> Todos List </h1>
-      <form className="row m-2">
-        <div className="col mx-auto d-inline-flex">
+      <form className="row m-2 d-inline">
+        <div className="col mx-auto d-inline">
           <div className="form-group  m-2">
             <label htmlFor="titre" className="p-2">
               {" "}
@@ -82,9 +82,9 @@ function App() {
           <div
             className="section m-2 p-3 "
             key={val.id}
-            style={{
-              background: val.color,
-            }}
+            // style={{
+            //   background: val.color,
+            // }}
           >
             <div className="row mx-auto">
               <div className="col mx-auto df">

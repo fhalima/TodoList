@@ -18,6 +18,11 @@ body {
     border-radius: 10px;
     min-height: 30px;
     line-height: 30px;
+    background-color: antiquewhite;
+}
+
+p {
+    color: darkslategrey;
 }
 
 .bt {
