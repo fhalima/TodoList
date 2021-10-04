@@ -44,7 +44,10 @@ function App() {
   };
   return (
     <div className="App container">
-      <h1> Todos List </h1>
+      <h1>
+        {" "}
+        Todos List <span>{todoList.length}</span>{" "}
+      </h1>
       <form className="row m-2 d-inline">
         <div className="col mx-auto d-inline">
           <div className="form-group  m-2">
