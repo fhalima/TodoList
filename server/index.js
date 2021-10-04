@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const cors = require("cors");
 const fs = require("fs");
 // let jsonData = require("./data.json");
@@ -9,9 +10,10 @@ let datajson = [];
 const getDataJson = () => {
     fs.readFile("./data.json", "utf8", (err, data) => {
         if (err) {
-            datajson = [];
+            datajson = [""];
             throw err;
-        } else datajson = JSON.parse(data);
+        } else if (data !== "") datajson = JSON.parse(data);
+        else datajson = [];
 
         // datajson = data;
     });
@@ -20,12 +22,15 @@ const getDataJson = () => {
 const setDataJson = () => {
     let jd = JSON.stringify(datajson);
     console.log(jd);
-    fs.writeFile("data.json", jd, () => {});
+    fs.writeFile("./data.json", jd, function(err, result) {
+        if (err) console.log("error", err);
+    });
+    // fs.writeFileSync("data.json", jd);
 };
-
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded());
+// app.use(express.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/api/get", (req, response) => {
     getDataJson();
