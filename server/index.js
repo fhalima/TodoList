@@ -35,7 +35,7 @@ app.delete("/api/delete/:id", (req, res) => {
     for (var i = datajson.length - 1; i >= 0; i--) {
         if (datajson[i].id === Number(key)) {
             console.log("c bon");
-            datajson.splice(i, 1);
+            datajson.splice(i, 1); //n
         }
     }
     setDataJson();
